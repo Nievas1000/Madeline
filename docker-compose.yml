@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  chat-widget:
+    build: .
+    container_name: julio-prisiones-chat-widget
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    networks:
+      - chat-network
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  chat-network:
+    driver: bridge
+
+# Para usar con EasyPanel:
+# 1. EasyPanel detectará automáticamente este docker-compose.yml
+# 2. O puedes deployar el Dockerfile directamente
+# 3. Configura las variables de entorno necesarias en EasyPanel
