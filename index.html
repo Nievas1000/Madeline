@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Widget - Julio Prisiones</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Botón flotante para abrir el chat -->
+    <div class="chat-button" id="chatButton">
+        <img src="bot-avatar.png" alt="Chat Bot" class="chat-button-icon">
+        <span class="notification-badge" id="notificationBadge" style="display: none;">1</span>
+    </div>
+
+    <!-- Widget del chat -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-header">
+            <div class="chat-header-content">
+                <img src="bot-avatar.png" alt="Bot Avatar" class="chat-avatar">
+                <div class="chat-header-info">
+                    <h3 class="chat-title">Asistente Julio Prisiones</h3>
+                    <p class="chat-status">En línea</p>
+                </div>
+            </div>
+            <button class="chat-close" id="chatClose">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    <p>¡Hola! 👋 Soy tu asistente virtual. ¿En qué puedo ayudarte con el curso de Ayudantes de Instituciones Penitenciarias?</p>
+                    <span class="message-time"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <div class="typing-indicator" id="typingIndicator">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="chat-input-wrapper">
+                <input 
+                    type="text" 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="Escribe un mensaje..."
+                    autocomplete="off"
+                >
+                <button class="chat-send" id="chatSend">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 8L11 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>
