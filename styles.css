@@ -162,12 +162,6 @@ body {
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGElEQVQYV2NkYGD4z8DAwMgABXAGjHoKACNFAgH9R9YyAAAAAElFTkSuQmCC');
 }
 
-/* Control de tamaño de imágenes en mensajes */
-.chat-messages img {
-    max-width: 100%;
-    height: auto;
-}
-
 .chat-messages::-webkit-scrollbar {
     width: 6px;
 }
