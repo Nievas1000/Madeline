@@ -14,8 +14,8 @@ COPY config.js /usr/share/nginx/html/
 COPY chat.js /usr/share/nginx/html/
 COPY embed.js /usr/share/nginx/html/
 
-# Copiar avatar (si existe - puedes comentar esta línea si no lo tienes)
-COPY bot-avatar.* /usr/share/nginx/html/
+# Copiar imagen del avatar
+COPY made-logo.jpg /usr/share/nginx/html/
 
 # Copiar configuración personalizada de Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
