@@ -2,14 +2,14 @@
 const CONFIG = {
     // URL del endpoint de n8n (webhook)
     // Reemplaza esto con tu URL de n8n
-    N8N_WEBHOOK_URL: 'https://julioprisiones-n8n.lry4rt.easypanel.host/webhook/a26b8908-bab3-44c7-adf4-8738416bcc42',
+    N8N_WEBHOOK_URL: 'https://Xuxaprisiones-n8n.lry4rt.easypanel.host/webhook/a26b8908-bab3-44c7-adf4-8738416bcc42',
 
     // Configuración del bot
-    BOT_NAME: 'Julio',
+    BOT_NAME: 'Xuxa',
     BOT_AVATAR: 'made-logo.jpg', // Puedes cambiar por tu imagen
 
     // Mensajes del sistema
-    WELCOME_MESSAGE: '¡Hola! 👋 Soy Julio. ¿En qué puedo ayudarte?',
+    WELCOME_MESSAGE: '¡Hola! 👋 Soy Xuxa. ¿En qué puedo ayudarte?',
     ERROR_MESSAGE: 'Lo siento, hubo un problema al procesar tu mensaje. ¿Puedes intentarlo de nuevo?',
 
     // Configuración de comportamiento
