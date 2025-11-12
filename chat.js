@@ -166,6 +166,8 @@ function addMessage(text, sender) {
         avatar.src = CONFIG.BOT_AVATAR;
         avatar.alt = 'Bot';
         avatar.className = 'message-avatar';
+        // Forzar estilos inline para asegurar el tamaño correcto
+        avatar.style.cssText = 'width: 32px !important; height: 32px !important; max-width: 32px !important; max-height: 32px !important; min-width: 32px !important; min-height: 32px !important; border-radius: 50%; object-fit: cover; flex-shrink: 0;';
         messageDiv.appendChild(avatar);
     }
 
@@ -270,6 +272,8 @@ function loadMessageHistory() {
                     avatar.src = CONFIG.BOT_AVATAR;
                     avatar.alt = 'Bot';
                     avatar.className = 'message-avatar';
+                    // Forzar estilos inline
+                    avatar.style.cssText = 'width: 32px !important; height: 32px !important; max-width: 32px !important; max-height: 32px !important; min-width: 32px !important; min-height: 32px !important; border-radius: 50%; object-fit: cover; flex-shrink: 0;';
                     messageDiv.appendChild(avatar);
                 }
 
