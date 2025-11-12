@@ -32,19 +32,19 @@ function init() {
     if (CONFIG.STORE_CONVERSATION) {
         loadMessageHistory();
     }
-    
+
     // Auto-abrir chat si está configurado
     if (CONFIG.AUTO_OPEN_CHAT) {
         setTimeout(() => {
             toggleChat();
         }, 1000);
     }
-    
+
     // Mostrar notificación si está configurado
     if (CONFIG.SHOW_NOTIFICATION && !isOpen) {
         showNotification();
     }
-    
+
     // Actualizar tiempos de mensajes
     updateMessageTimes();
     setInterval(updateMessageTimes, 60000); // Actualizar cada minuto
@@ -53,7 +53,7 @@ function init() {
 function toggleChat() {
     isOpen = !isOpen;
     chatWidget.classList.toggle('active');
-    
+
     if (isOpen) {
         chatInput.focus();
         hideNotification();
@@ -75,37 +75,37 @@ function hideNotification() {
 
 async function sendMessage() {
     const message = chatInput.value.trim();
-    
+
     if (!message) return;
-    
+
     // Deshabilitar input mientras se procesa
     chatInput.disabled = true;
     chatSend.disabled = true;
-    
+
     // Añadir mensaje del usuario
     addMessage(message, 'user');
-    
+
     // Limpiar input
     chatInput.value = '';
-    
+
     // Mostrar indicador de escritura
     if (CONFIG.SHOW_TYPING_INDICATOR) {
         showTypingIndicator();
     }
-    
+
     try {
         // Enviar mensaje al endpoint de n8n
         const response = await sendToN8N(message);
-        
+
         // Esperar un poco antes de mostrar la respuesta (más natural)
         await sleep(CONFIG.TYPING_DELAY);
-        
+
         // Ocultar indicador de escritura
         hideTypingIndicator();
-        
+
         // Añadir respuesta del bot
         addMessage(response, 'bot');
-        
+
     } catch (error) {
         console.error('Error al enviar mensaje:', error);
         hideTypingIndicator();
@@ -130,7 +130,7 @@ async function sendToN8N(message) {
                 userAgent: navigator.userAgent
             }
         };
-        
+
         const response = await fetch(CONFIG.N8N_WEBHOOK_URL, {
             method: 'POST',
             headers: {
@@ -138,18 +138,18 @@ async function sendToN8N(message) {
             },
             body: JSON.stringify(payload)
         });
-        
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const data = await response.json();
-        
+
         // Ajusta esto según la estructura de respuesta de tu n8n
         // Aquí asumo que tu n8n devuelve { response: "texto de respuesta" }
         // Modifica según tu estructura real
         return data.response || data.message || data.output || 'Respuesta recibida';
-        
+
     } catch (error) {
         console.error('Error en la comunicación con n8n:', error);
         throw error;
@@ -159,25 +159,34 @@ async function sendToN8N(message) {
 function addMessage(text, sender) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}-message`;
-    
+
+    // Añadir avatar solo para mensajes del bot
+    if (sender === 'bot') {
+        const avatar = document.createElement('img');
+        avatar.src = CONFIG.BOT_AVATAR;
+        avatar.alt = 'Bot';
+        avatar.className = 'message-avatar';
+        messageDiv.appendChild(avatar);
+    }
+
     const messageContent = document.createElement('div');
     messageContent.className = 'message-content';
-    
+
     const messageText = document.createElement('p');
     messageText.textContent = text;
-    
+
     const messageTime = document.createElement('span');
     messageTime.className = 'message-time';
     messageTime.textContent = formatTime(new Date());
     messageTime.dataset.timestamp = new Date().getTime();
-    
+
     messageContent.appendChild(messageText);
     messageContent.appendChild(messageTime);
     messageDiv.appendChild(messageContent);
-    
+
     chatMessages.appendChild(messageDiv);
     scrollToBottom();
-    
+
     // Guardar en historial
     const messageObj = {
         text: text,
@@ -185,11 +194,11 @@ function addMessage(text, sender) {
         timestamp: new Date().getTime()
     };
     messageHistory.push(messageObj);
-    
+
     if (CONFIG.STORE_CONVERSATION) {
         saveMessageHistory();
     }
-    
+
     // Mostrar notificación si el chat está cerrado y es mensaje del bot
     if (!isOpen && sender === 'bot' && CONFIG.SHOW_NOTIFICATION) {
         showNotification();
@@ -246,33 +255,42 @@ function loadMessageHistory() {
         const stored = localStorage.getItem('chat_history');
         if (stored) {
             messageHistory = JSON.parse(stored);
-            
+
             // Limpiar mensajes actuales (excepto el de bienvenida)
             chatMessages.innerHTML = '';
-            
+
             // Recrear mensajes desde el historial
             messageHistory.forEach(msg => {
                 const messageDiv = document.createElement('div');
                 messageDiv.className = `message ${msg.sender}-message`;
-                
+
+                // Añadir avatar solo para mensajes del bot
+                if (msg.sender === 'bot') {
+                    const avatar = document.createElement('img');
+                    avatar.src = CONFIG.BOT_AVATAR;
+                    avatar.alt = 'Bot';
+                    avatar.className = 'message-avatar';
+                    messageDiv.appendChild(avatar);
+                }
+
                 const messageContent = document.createElement('div');
                 messageContent.className = 'message-content';
-                
+
                 const messageText = document.createElement('p');
                 messageText.textContent = msg.text;
-                
+
                 const messageTime = document.createElement('span');
                 messageTime.className = 'message-time';
                 messageTime.textContent = formatTime(new Date(msg.timestamp));
                 messageTime.dataset.timestamp = msg.timestamp;
-                
+
                 messageContent.appendChild(messageText);
                 messageContent.appendChild(messageTime);
                 messageDiv.appendChild(messageContent);
-                
+
                 chatMessages.appendChild(messageDiv);
             });
-            
+
             scrollToBottom();
         }
     } catch (error) {
