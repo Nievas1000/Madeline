@@ -228,7 +228,7 @@ body {
     gap: 8px;
 }
 
-.bot-message .message-avatar {
+.bot-message .message-avatar img {
     width: 32px;
     height: 32px;
     min-width: 32px;
