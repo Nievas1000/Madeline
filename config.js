@@ -2,14 +2,14 @@
 const CONFIG = {
     // URL del endpoint de n8n (webhook)
     // Reemplaza esto con tu URL de n8n
-    N8N_WEBHOOK_URL: 'https://Xuxaprisiones-n8n.lry4rt.easypanel.host/webhook/a26b8908-bab3-44c7-adf4-8738416bcc42',
+    N8N_WEBHOOK_URL: 'https://tu-instancia-n8n.com/webhook/tu-webhook-id',
 
     // Configuración del bot
     BOT_NAME: 'Xuxa',
-    BOT_AVATAR: 'made-logo.jpg', // Puedes cambiar por tu imagen
+    BOT_AVATAR: 'made-logo.jpg', // Tu imagen del bot
 
     // Mensajes del sistema
-    WELCOME_MESSAGE: '¡Hola! 👋 Soy Xuxa. ¿En qué puedo ayudarte?',
+    WELCOME_MESSAGE: '¡Hola! 👋 Soy Xuxa!. ¿En qué puedo ayudarte hoy?',
     ERROR_MESSAGE: 'Lo siento, hubo un problema al procesar tu mensaje. ¿Puedes intentarlo de nuevo?',
 
     // Configuración de comportamiento
@@ -17,6 +17,7 @@ const CONFIG = {
     TYPING_DELAY: 800, // Milisegundos antes de mostrar la respuesta
     AUTO_OPEN_CHAT: false, // Abrir automáticamente el chat al cargar la página
     SHOW_NOTIFICATION: true, // Mostrar badge de notificación
+    MAX_MESSAGE_LENGTH: 200, // Máximo de caracteres por mensaje (aprox. 25-30 palabras)
 
     // Almacenamiento de conversación
     STORE_CONVERSATION: true, // Guardar conversación en localStorage
