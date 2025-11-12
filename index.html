@@ -64,6 +64,66 @@
     </div>
 
     <script src="config.js"></script>
-    <script src="chat.js"></script>
+    <script src="chat.js?v=2"></script>
+    
+    <!-- Script para deshabilitar selección y menú contextual -->
+    <script>
+    // Deshabilitar menú contextual (click derecho) en el chat
+    document.addEventListener('DOMContentLoaded', () => {
+        const chatWidget = document.getElementById('chatWidget');
+        const chatMessages = document.getElementById('chatMessages');
+        
+        if (chatWidget) {
+            chatWidget.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                return false;
+            });
+        }
+        
+        if (chatMessages) {
+            chatMessages.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                return false;
+            });
+            
+            // Deshabilitar también arrastrar para seleccionar
+            chatMessages.addEventListener('mousedown', (e) => {
+                if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                    e.preventDefault();
+                }
+            });
+        }
+    });
+    </script>
+    
+    <!-- Script para forzar tamaños de avatares -->
+    <script>
+    // Función para forzar el tamaño correcto de todos los avatares
+    function fixAvatarSizes() {
+        document.querySelectorAll('.message-avatar').forEach(img => {
+            img.style.width = '32px';
+            img.style.height = '32px';
+            img.style.maxWidth = '32px';
+            img.style.maxHeight = '32px';
+            img.style.minWidth = '32px';
+            img.style.minHeight = '32px';
+        });
+    }
+    
+    // Ejecutar al cargar
+    window.addEventListener('load', fixAvatarSizes);
+    
+    // Ejecutar periódicamente para capturar mensajes nuevos
+    setInterval(fixAvatarSizes, 1000);
+    
+    // Observer para detectar cuando se añaden nuevos mensajes
+    const observer = new MutationObserver(fixAvatarSizes);
+    document.addEventListener('DOMContentLoaded', () => {
+        const chatMessages = document.getElementById('chatMessages');
+        if (chatMessages) {
+            observer.observe(chatMessages, { childList: true, subtree: true });
+        }
+    });
+    </script>
 </body>
 </html>

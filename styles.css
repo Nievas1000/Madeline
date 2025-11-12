@@ -75,6 +75,11 @@ body {
     overflow: hidden;
     z-index: 9999;
     animation: slideUp 0.3s ease;
+    /* Deshabilitar selección de texto */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .chat-widget.active {
@@ -86,7 +91,6 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -160,6 +164,13 @@ body {
     padding: 20px;
     background: #ECE5DD;
     background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGElEQVQYV2NkYGD4z8DAwMgABXAGjHoKACNFAgH9R9YyAAAAAElFTkSuQmCC');
+    /* Deshabilitar selección de texto */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    /* Cambiar cursor */
+    cursor: default;
 }
 
 /* Control de tamaño de imágenes en mensajes */
@@ -195,6 +206,11 @@ body {
     display: flex;
     margin-bottom: 12px;
     animation: messageSlide 0.3s ease;
+    /* Deshabilitar selección de texto */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 @keyframes messageSlide {
@@ -202,7 +218,6 @@ body {
         opacity: 0;
         transform: translateY(10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -215,12 +230,14 @@ body {
     border-radius: 8px;
     position: relative;
     word-wrap: break-word;
+    cursor: default;
 }
 
 .message-content p {
     margin: 0;
     font-size: 14px;
     line-height: 1.4;
+    cursor: default;
 }
 
 .message-time {
@@ -304,14 +321,10 @@ body {
 }
 
 @keyframes typing {
-
-    0%,
-    60%,
-    100% {
+    0%, 60%, 100% {
         transform: translateY(0);
         opacity: 0.7;
     }
-
     30% {
         transform: translateY(-10px);
         opacity: 1;
@@ -379,7 +392,7 @@ body {
         right: 10px;
         bottom: 80px;
     }
-
+    
     .chat-button {
         bottom: 15px;
         right: 15px;
