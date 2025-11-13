@@ -2,7 +2,7 @@
 const CONFIG = {
     // URL del endpoint de n8n (webhook)
     // Reemplaza esto con tu URL de n8n
-    N8N_WEBHOOK_URL: 'https://tu-instancia-n8n.com/webhook/tu-webhook-id',
+    N8N_WEBHOOK_URL: 'https://julioprisiones-n8n.lry4rt.easypanel.host/webhook/a26b8908-bab3-44c7-adf4-8738416bcc42',
 
     // Configuración del bot
     BOT_NAME: 'Xuxa',
